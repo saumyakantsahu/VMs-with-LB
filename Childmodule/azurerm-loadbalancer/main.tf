@@ -14,7 +14,9 @@ resource "azurerm_lb" "LoadBalancer" {
 resource "azurerm_lb_backend_address_pool" "backendpool" {
   loadbalancer_id = azurerm_lb.LoadBalancer.id
   name            = var.backend_pool_name
+
 }
+
 
 #health probe
 resource "azurerm_lb_probe" "healthprobe" {
