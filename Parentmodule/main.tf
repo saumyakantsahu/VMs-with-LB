@@ -124,14 +124,14 @@ module "bastion_host" {
 #NSG and association
 #8.1 NSG Creation 
 module "nsg1" {
-  source   = "../Childmodule/azurerm-nsg"
+  source   = "../Childmodule/azurerm-nsg-07"
   nsg_name = "nsg-vm-01"
   rg_name  = module.rg.rg_name
   location = module.rg.location
 }
 #8.2 NSG Creation
 module "nsg2" {
-  source   = "../Childmodule/azurerm-nsg"
+  source   = "../Childmodule/azurerm-nsg-07"
   nsg_name = "nsg-vm-02"
   rg_name  = module.rg.rg_name
   location = module.rg.location
@@ -168,7 +168,7 @@ module "public_ip_lb" {
 }
 #9.2 Load Balancer
 module "load_balancer" {
-  source            = "../Childmodule/azurerm-loadbalancer"
+  source            = "../Childmodule/azurerm-loadbalancer-08"
   lb_name           = "myLoadBalancer"
   rg_name           = module.rg.rg_name
   location          = module.rg.location
@@ -187,7 +187,7 @@ module "load_balancer" {
 #10.1 NIC1 with LB
 
 module "nic_lb_association1" {
-  source          = "../Childmodule/azurerm-NIC_LB-association"
+  source          = "../Childmodule/azurerm-NIC_LB-association-09"
   nic_id          = module.nic1.nic-id
   ip_config_name  = "internal"
   backend_pool_id = module.load_balancer.backend_pool_id
@@ -196,7 +196,7 @@ module "nic_lb_association1" {
 #10.2 NIC2 with LB
 module "nic_lb_association2" {
 
-  source          = "../Childmodule/azurerm-NIC_LB-association"
+  source          = "../Childmodule/azurerm-NIC_LB-association-09"
   nic_id          = module.nic2.nic-id
   ip_config_name  = "internal"
   backend_pool_id = module.load_balancer.backend_pool_id
